@@ -51,8 +51,8 @@ void lotteryFileRead()
     while(1)
     {
         Lottery* node = mkLotteryNode();
-        int ret = fread(node,sizeof(Lottery)-4,1,file);
-        if(ret == EOF)
+        int ret = fread(node,sizeof(Lottery),1,file);
+        if(0 == ret)
         {
             free(node);
             node = NULL;
@@ -68,6 +68,7 @@ void lotteryFileRead()
                 exit(EXIT_FAILURE);
             }
         }
+        node->next = NULL;
         insert(l_list,node);
     }
 }
@@ -85,7 +86,7 @@ void lotteryFileWrite()
     Lottery* node = l_list->head;
     while(NULL != node)
     {
-        fwrite(node,sizeof(Lottery)-4,1,file);
+        fwrite(node,sizeof(Lottery),1,file);
         node = node->next;
     }
 	fclose(file);

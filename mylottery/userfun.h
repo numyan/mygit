@@ -11,5 +11,9 @@ void alterUser(char user[]);
 void deleteUser(char user[]);
 //给用户账户充值
 void recharge(char user[]);
+//彩票购买
+void buyLottery(char user[]);
+//查询购票记录
+void lotteryRecord(char user[]);
 
 #endif

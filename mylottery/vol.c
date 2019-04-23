@@ -46,13 +46,14 @@ void volFileRead()
     FILE* file = fopen(pathVol,"rb");
     if(NULL == file)
     {
+        printf("找不到文件\n");
         exit(EXIT_FAILURE);
     }
     while(1)
     {
         Vol* node = mkVolNode();
-        int ret = fread(node,sizeof(Vol)-4,1,file);
-        if(ret == EOF)
+        int ret = fread(node,sizeof(Vol),1,file);
+        if(0 == ret)
         {
             free(node);
             node = NULL;
@@ -68,6 +69,7 @@ void volFileRead()
                 exit(EXIT_FAILURE);
             }
         }
+        node->next = NULL;
         insert(v_list,node);
     }
 }
@@ -85,7 +87,7 @@ void volFileWrite()
     Vol* node = v_list->head;
     while(NULL != node)
     {
-        fwrite(node,sizeof(Vol)-4,1,file);
+        fwrite(node,sizeof(Vol),1,file);
         node = node->next;
     }
 	fclose(file);

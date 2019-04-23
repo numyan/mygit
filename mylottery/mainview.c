@@ -4,6 +4,7 @@ void loadView()
 {
     filewrite();
     system("reset");
+
 	int choose=3;
 	printf("*********************\n");
 	printf("*       1.登录      *\n");
@@ -96,18 +97,29 @@ void userView(char user[])
 			break;
 		case 3:
 			deleteUser(user);
+			printf("\n按回车返回上一界面");
+			while(getchar() != '\n');
 			loadView();
 			break;
 		case 4:
 			recharge(user);
 			userView(user);
 			break;
-		// case 5:
-
-		// case 6:
-
-		// case 7:
-
+		case 5:
+			
+			printf("\n按回车返回上一界面");
+			while(getchar() != '\n');
+			break;
+		case 6:
+			buyLottery();
+			printf("\n按回车返回上一界面");
+			while(getchar() != '\n');
+			break;
+		case 7:
+			lotteryRecord(user);
+			printf("\n按回车返回上一界面");
+			while(getchar() != '\n');
+			break;
 		// case 8:
 
 		case 0:
@@ -120,6 +132,7 @@ void userView(char user[])
 //管理员界面
 void adminView()
 {
+	volFileWrite();
 	system("reset");
     printf("欢迎进入管理员界面\n");
 	printf("1:	发行彩票\n");
@@ -179,6 +192,7 @@ void adminView()
 //公证员界面
 void workerView()
 {
+	volFileWrite();
 	system("reset");
     printf("欢迎进入公证员界面\n");
 	printf("1:	开奖\n");

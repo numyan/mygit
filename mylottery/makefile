@@ -1,5 +1,5 @@
 term:main.o userinf.o lotteryinf.o vol.o mainview.o mainfun.o userfun.o adminfun.o workerfun.o
-	gcc main.o userinf.o lotteryinf.o vol.o mainview.o mainfun.o userfun.o adminfun.o workerfun.o -o term
+	gcc main.o userinf.o lotteryinf.o vol.o mainview.o mainfun.o userfun.o adminfun.o workerfun.o -g -o term
 
 main.o:main.c adminfun.h
 	gcc main.c -c

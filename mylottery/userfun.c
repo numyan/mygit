@@ -60,7 +60,8 @@ void alterUser(char user[])
                             userView(user);
                         }
                         else
-                        {                            
+                        {   
+                            system("reset");                         
                             printf("两次输入不同(按回车继续)\n");
                             while(getchar() != '\n');
                         }  
@@ -76,6 +77,7 @@ void alterUser(char user[])
                         while(getchar() != '\n');
 				        break;
 			        }
+                    system("clear");
 			        printf("密码错误，还有%d次机会\n",ret);
                 }
                 i++;
@@ -110,16 +112,15 @@ void deleteUser(char user[])
                 {
                     if(cur == u_list->head)
                     {
-                        pre->next = cur->next->next;
+                       u_list->head = cur->next;
                     }
                     else
                     {
-                        pre->next = cur->next;                       
+                       pre->next = cur->next;                       
                     }
                     free(cur);
                     cur = NULL;
-                    printf("\n注销成功！\n按回车键返回主界面");
-                    while(getchar() != '\n');
+                    printf("\n注销成功！");
                     break;
                 }
                 else
@@ -184,58 +185,60 @@ void recharge(char user[])
     }
 }
 
-// //彩票购买
-// void buyLottery(char user[])
-// {
-//     if(strcmp(v_list->head->condition,"run") == 0)
-//     {
-//         printf("本期号码以开奖,敬请期待！\n");
-//         return;
-//     }
-//     int n = 0;
-//     while(1)
-//     {
-//         printf("请输入你要打的注数(每张彩票至多5注)");
-//         if(!scanf("%d",&n))
-//         {
-//             system("reset");
-//             printf("输入错误\n");
-//             while(getchar() != '\n');
-//             continue;
-//         }
-//         if(n > 5 || n < 1)
-//         {
-//             system("clear");
-//             printf("输入错误\n");
-//             while(getchar() != '\n');
-//             continue;
-//         }
-//         else
-//         {
-//             break;
-//         } 
-//     }
+//彩票购买
+void buyLottery(char user[])
+{
+    if(strcmp(v_list->head->condition,"run") == 0)
+    {
+        printf("本期号码以开奖,敬请期待！\n");
+        return;
+    }
+    int n = 0;
+    while(1)
+    {
+        printf("请输入你要打的注数(每张彩票至多5注)");
+        if(!scanf("%d",&n))
+        {
+            system("clear");
+            printf("输入错误\n");
+            while(getchar() != '\n');
+            continue;
+        }
+        if(n > 5 || n < 1)
+        {
+            system("clear");
+            printf("输入错误\n");
+            while(getchar() != '\n');
+            continue;
+        }
+        else
+        {
+            break;
+        } 
+    }
 
-//     int num[7];
-//     int i = 0;
-//     int j = 0;
-//     printf("请输入你要买的彩票号码(前5注号码1～35，后两注号码1~12)\n");
-//     for(i = 0;i < n;i++)
-//     {
-//         for(j = 0;j < 7;j++)
-//         {
-//             scanf("%d",num+j);
-//         }
+    int num[7];
+    int i = 0;
+    int j = 0;
+    printf("请输入你要买的彩票号码(前5注号码1～35，后两注号码1~12)\n");
+    for(i = 0;i < n;i++)
+    {
+        for(j = 0;j < 7;j++)
+        {
+            scanf("%d",num+j);
+        }
 
-//         Lottery* node = mkLotteryNode();
-//         node->vol = v_list->head->vol;
-//         node->id = l_list->head->id + 1;
-//         strcpy(node->user,user);
-//         node->sum = n;
+        Lottery* node = mkLotteryNode();
+        node->vol = v_list->head->vol;
+        node->id = node->vol*1000 + v_list->head->sumLottery + 1;
+        v_list->head->sumLottery += n;
+        strcpy(node->user,user);
+        node->sum = n;
 
-//         lotteryInsert(l_list,node);
-//     }
-// }
+        lotteryInsert(l_list,node);
+        l_list->len++;
+    }
+}
 
 // //查询中奖记录
 // void judgeBonus(char user[])
@@ -252,15 +255,32 @@ void recharge(char user[])
 
 // }
 
-// //查询购票记录
-// void lotteryRecord(char user[])
+//查询购票记录
+void lotteryRecord(char user[])
+{
+    int i = 0;
+    int j = 0;
+    Lottery* node = l_list->head;
+    while(NULL != node)
+    {
+        if(strcmp(node->user,user) == 0)
+        {
+            printf("期号：%d ID:%ld\n",node->vol,node->id);
+            for(i = 0;i < node->sum;i++)
+            {
+                for(j = 0;j < 7;j++)
+                {
+                    printf("%d ",node->num[i][j]);
+                }
+                printf("\n");
+            }
+            printf("\n");
+        }
+    }
+}
+
+// //判断是否中奖
+// void judegeBonus()
 // {
-//     Lottery* node = l_list->head;
-//     while(NULL != node)
-//     {
-//         if(strcmp(node->user,user) == 0)
-//         {
-//             printf("%d");
-//         }
-//     }
+    
 // }

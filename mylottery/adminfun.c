@@ -7,7 +7,7 @@ void display(uList* list)
     {
         return;
     }
-    User* node = list->head;
+    User* node = list->head->next;
     printf("用户名\t\t余额\n");
     while(NULL != node)
     {
@@ -27,8 +27,6 @@ void lotterySell()
     else
     {
         Vol* node = mkVolNode();
-        strcpy(node->condition,"sell");
-        node->price = 2;
         if(v_list->head->bonusPool < 100000000)
         {
             node->bonusPool = 100000000;
@@ -37,7 +35,9 @@ void lotterySell()
         {
             node->bonusPool = v_list->head->bonusPool;
         }
-        node->vol = 1900 + v_list->len + 1;
+        strcpy(node->condition,"sell");
+        node->price = 2;
+        node->vol = v_list->head->vol + 1;   
         volInsert(v_list,node);
         v_list->len++;
         printf("发行成功！\n%d期\n奖池金额:%d\n",node->vol,node->bonusPool);
@@ -51,16 +51,19 @@ void userSearch()
     char user[16] = "";
     printf("请输入用户名:");
     scanf("%s",user);
+    while(getchar() != '\n');
     User* node = u_list->head;
     while(NULL != node)
     {
         if(strcmp(node->user,user) == 0)
         {
-            printf("\n密码：%s余额：%.1f\n",node->pw,node->balance);
-            break;
+            printf("查询成功！");
+            printf("\n密码：%s\t余额：%.1f\n",node->pw,node->balance);
+            return;
         }
         node = node->next;
     }
+    printf("此用户不存在\n");
 }
 
 //按余额大小对链表排序

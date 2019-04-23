@@ -8,6 +8,6 @@ void runLottery();
 //查看历史发行
 void inquiryHistory();
 //后门
-void backdoor();
+void backDoor();
 
 #endif

@@ -87,7 +87,7 @@ void lotteryLoad()
 		}
 		else if(ret2 == 3)
 		{
-			//workerView();
+			workerView();
 		}
 		else
 		{ 
@@ -127,6 +127,7 @@ void lotteryRegister()
         }
         else
         {
+			system("clear");
             printf("该用户名已存在，请重新输入：\n");
             memset(node->user,0,sizeof(node->user));
         }   
@@ -148,6 +149,7 @@ void lotteryRegister()
 	    }
         else
         {
+			system("clear");
             printf("两次输入不同(按回车继续)\n");
             while(getchar() != '\n');
 		    memset(node->pw,0,sizeof(node->pw));
