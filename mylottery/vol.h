@@ -35,6 +35,6 @@ void volInsert(vList* l_list,Vol* node);
 //从文件中读取每期信息
 void volFileRead();
 //把每期信息存入文件
-void volFileWrite();
+void _volFileWrite();
 
 #endif

@@ -100,7 +100,7 @@ void lotteryLoad()
                 while(getchar() != '\n');
 				break;
 			}
-			system("reset");
+			system("clear");
 			printf("用户名不存在或密码错误(输错三次退出)，还有%d次机会)\n",ret);
 		}
 		i++;		

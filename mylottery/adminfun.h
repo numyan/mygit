@@ -12,5 +12,7 @@ void userSearch();
 void userSort(uList* list,int len);
 //彩票发行
 void lotterySell();
+//对每期链表按期号从大到小进行排序
+void sortVol();
 
 #endif

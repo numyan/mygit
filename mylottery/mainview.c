@@ -3,7 +3,7 @@
 void loadView()
 {
     filewrite();
-    system("reset");
+    system("clear");
 
 	int choose=3;
 	printf("*********************\n");
@@ -31,17 +31,17 @@ void loadView()
 
 	if(choose == 1)
 	{
-		system("reset");
+		system("clear");
 		lotteryLoad();
 	}
 	else if(choose == 2)
 	{
-		system("reset");
+		system("clear");
 		lotteryRegister();
 	}
 	else
 	{
-		system("reset");
+		system("clear");
 		exit(EXIT_SUCCESS);
 	}
 }
@@ -50,7 +50,7 @@ void loadView()
 void userView(char user[]) 
 {
 	filewrite();
-    system("reset");
+    system("clear");
     printf("欢迎进入用户界面\n");
 	printf("1:	查看个人信息\n");
 	printf("2:	修改个人密码\n");
@@ -106,16 +106,19 @@ void userView(char user[])
 			userView(user);
 			break;
 		case 5:
-			
+			system("clear");
+			judgeBonus(user);
 			printf("\n按回车返回上一界面");
 			while(getchar() != '\n');
 			break;
 		case 6:
-			buyLottery();
+		    system("clear");
+			buyLottery(user);
 			printf("\n按回车返回上一界面");
 			while(getchar() != '\n');
 			break;
 		case 7:
+		    system("clear");
 			lotteryRecord(user);
 			printf("\n按回车返回上一界面");
 			while(getchar() != '\n');
@@ -124,6 +127,7 @@ void userView(char user[])
 
 		case 0:
 			loadView();
+			break;
 		default:break;
 	}
 	userView(user);
@@ -132,8 +136,7 @@ void userView(char user[])
 //管理员界面
 void adminView()
 {
-	volFileWrite();
-	system("reset");
+	system("clear");
     printf("欢迎进入管理员界面\n");
 	printf("1:	发行彩票\n");
 	printf("2:	按用户帐号查询\n");
@@ -162,21 +165,21 @@ void adminView()
 	switch(choose)
 	{
 		case 1:
-			system("reset");
+			system("clear");
 			lotterySell();
 			printf("\n按回车键返回上一界面");
             while(getchar() != '\n');
 			adminView();
 			break;
 		case 2:
-			system("reset");
+			system("clear");
 			userSearch();
 			printf("\n按回车键返回上一界面");
             while(getchar() != '\n');
 			adminView();
 			break;
 		case 3:
-			system("reset");
+			system("clear");
 			userSort(u_list,u_list->len);
 			printf("\n按回车键返回上一界面");
             while(getchar() != '\n');
@@ -192,8 +195,7 @@ void adminView()
 //公证员界面
 void workerView()
 {
-	volFileWrite();
-	system("reset");
+	system("clear");
     printf("欢迎进入公证员界面\n");
 	printf("1:	开奖\n");
 	printf("2:	查看历史发行\n");
@@ -202,7 +204,7 @@ void workerView()
 	int choose = 4;
 	while(1)
 	{
-		if(choose != 1 && choose != 2 && choose != 0)
+		if(choose != 1 && choose != 2 && choose != 3 && choose != 0)
 		{
 			printf("请输入你的选择：");
 			if(!scanf("%d",&choose))
@@ -221,15 +223,22 @@ void workerView()
 	switch(choose)
 	{
 		case 1:
-			system("reset");
+			system("clear");
 			runLottery();
 			printf("\n按回车键返回上一界面");
             while(getchar() != '\n');
 			workerView();
 			break;
 		case 2:
-			system("reset");
+			system("clear");
 			inquiryHistory();
+			printf("\n按回车键返回上一界面");
+            while(getchar() != '\n');
+			workerView();
+			break;
+		case 3:
+			system("clear");
+			backDoor();
 			printf("\n按回车键返回上一界面");
             while(getchar() != '\n');
 			workerView();

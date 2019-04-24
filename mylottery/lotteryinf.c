@@ -38,6 +38,7 @@ void lotteryInsert(lList* list,Lottery* node)
 
     node->next = list->head;
     list->head = node;
+    list->len++;
 }
 
 //从文件中读取彩票信息
@@ -69,7 +70,7 @@ void lotteryFileRead()
             }
         }
         node->next = NULL;
-        insert(l_list,node);
+        lotteryInsert(l_list,node);
     }
 }
 

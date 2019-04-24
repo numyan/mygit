@@ -284,7 +284,7 @@ void lotteryRegister()
 
 void loadView()
 {
-    system("reset");
+    system("clear");
 	int choose=3;
 	printf("*********************\n");
 	printf("*       1.登录      *\n");
@@ -320,7 +320,7 @@ void loadView()
 	else
 	{
         filewrite();
-		system("reset");
+		system("clear");
 		exit(EXIT_SUCCESS);
 	}
 }

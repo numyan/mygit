@@ -16,6 +16,45 @@ void display(uList* list)
     }
 }
 
+//对每期链表按期号从大到小进行排序
+void sortVol()
+{
+    int i = 0,j = 0;
+    Vol* pre = NULL;
+    Vol* cur = NULL;
+    for(i=0;i < v_list->len-1;i++)
+    {
+        pre = v_list->head;
+        cur = pre;
+        for(j = 0;j<v_list->len - i -1;j++)
+        {
+            if(cur->vol < cur->next->vol)
+            {
+                if(cur == v_list->head)
+                {
+                    v_list->head = cur->next;
+                    cur->next = cur->next->next;
+                    v_list->head->next = cur;
+                    pre = v_list->head;
+                }
+                else
+                {
+                    pre->next = cur->next;
+                    cur->next = cur->next->next;
+                    pre->next->next = cur;
+                    pre = pre->next;
+                }
+            }
+            else
+            {
+                pre = cur;
+                cur = pre->next;
+            }
+            
+        }
+    }    
+}
+
 //彩票发行
 void lotterySell()
 {
@@ -27,22 +66,15 @@ void lotterySell()
     else
     {
         Vol* node = mkVolNode();
-        if(v_list->head->bonusPool < 100000000)
-        {
-            node->bonusPool = 100000000;
-        }
-        else
-        {
-            node->bonusPool = v_list->head->bonusPool;
-        }
+        node->bonusPool = v_list->head->bonusPool;
+
         strcpy(node->condition,"sell");
         node->price = 2;
         node->vol = v_list->head->vol + 1;   
         volInsert(v_list,node);
-        v_list->len++;
         printf("发行成功！\n%d期\n奖池金额:%d\n",node->vol,node->bonusPool);
-        volFileWrite();
     }
+    volFileWrite();
 }
 
 //查询用户

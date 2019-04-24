@@ -13,6 +13,8 @@ void deleteUser(char user[]);
 void recharge(char user[]);
 //彩票购买
 void buyLottery(char user[]);
+//查询中奖记录
+void judgeBonus(char user[]);
 //查询购票记录
 void lotteryRecord(char user[]);
 

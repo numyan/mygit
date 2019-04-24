@@ -9,7 +9,7 @@
 typedef struct lottery
 {
     int vol;
-    int id;
+    long int id;
     int num[5][7];
     char user[16];
     int sum;
